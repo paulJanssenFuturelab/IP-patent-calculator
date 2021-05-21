@@ -35,12 +35,13 @@ $regions = array(
 );
 
 $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-if (strpos($actual_link, 'localhost') !== false) {
-	$tool_url = "http://localhost/pc2";
+if (strpos($actual_link, '://localhost/') !== false) {
+	$tool_url = "http://localhost/tools/intellectual_property/online/pc2/";
 } else {
 	$tool_url = "https://pauljanssenfuturelab.eu/tools/intellectual_property/online/pc2";
 }
 
 
 $tool_folder = "pc2";
+
 ?>

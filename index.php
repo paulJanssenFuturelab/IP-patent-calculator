@@ -1,6 +1,6 @@
 <?php
 $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-if (strpos($actual_link, 'localhost') === false && strpos($actual_link, '://futurelab') === false) {
+if (strpos($actual_link, '://localhost') === false && strpos($actual_link, '://futurelab') === false) {
 	require_once( $_SERVER['DOCUMENT_ROOT'] . '/login_outside_wp.php');
 }
 ?>

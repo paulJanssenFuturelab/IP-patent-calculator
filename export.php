@@ -525,7 +525,7 @@ $pdf->SetFont('helvetica', '', 10);
 $pdf->AddPage('P');
 
 $pdf->SetAutoPageBreak(false, 0);
-$pdf->Image($tool_url . "/img/POC-sheet.jpg", 0, 0, 210, 297, '', '', '', false, 150, '', false, false, 0);
+$pdf->Image( 'img/POC-sheet.jpg', 0, 0, 210, 297, 'JPG', '', '', false, 150, '', false, false, 0);
 $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 
 // $pdf->Image("https://staging.pauljanssenfuturelab.eu/tools/poq5.5/img/POC-sheet.jpg", 0, 0, 210, 297, 'JPG', '', '', true, 150, '', false, false, 1, false, false, false);
@@ -560,21 +560,28 @@ You have selected the following countries: " . $countryString . "</p>";
 $pdf->writeHTML($txt, true, false, true, false, '');
 
 
-$txt = "<style>p {line-height:20px; text-align:center;}</style><br /><p>Costs per year</p>";
-$pdf->writeHTML($txt, true, false, true, false, '');
-
-$chartImage = str_replace('/var/www/vhosts/', 'https://', $chartImage);
-$chartImage = str_replace('httpdocs/', '', $chartImage);
-$pdf->Image($chartImage, 32, 70, 125, 90, 'JPG', '', '', true, 150, '', false, false, 1, false, false, false);
+// $txt = "<style>p {line-height:20px; text-align:center;}</style><br /><p>Costs per year</p>";
+// $pdf->writeHTML($txt, true, false, true, false, '');
 
 $pdf->Ln();
 
-$txt = "<style>p {line-height:20px; text-align:center;}</style><br /><p>Cumulative costs</p>";
-$pdf->writeHTML($txt, true, false, true, false, '');
+$chartImage = str_replace('/var/www/vhosts/', 'https://', $chartImage);
+$chartImage = str_replace('httpdocs/', '', $chartImage);
+
+// snij af bij tmp
+$chartImage = explode("tmp", $chartImage);
+$pdf->Image('tmp/' . $chartImage[1], 32, 70, 125, 90, 'JPG', '', '', true, 150, '', false, false, 1, false, false, false);
+
+$pdf->Ln();
+
+// $txt = "<style>p {line-height:20px; text-align:center;}</style><br /><p>Cumulative costs</p>";
+// $pdf->writeHTML($txt, true, false, true, false, '');
 
 $cumChartImage = str_replace('/var/www/vhosts/', 'https://', $cumChartImage);
 $cumChartImage = str_replace('httpdocs/', '', $cumChartImage);
-$pdf->Image($cumChartImage, 32, 180, 125, 90, 'JPG', '', '', true, 150, '', false, false, 1, false, false, false);
+
+$cumChartImage = explode("tmp", $cumChartImage);
+$pdf->Image('tmp/' . $cumChartImage[1], 32, 180, 125, 90, 'JPG', '', '', true, 150, '', false, false, 1, false, false, false);
 
 //$pdf->writeHTML($htmlImg, true, false, true, false, '');
 //$pdf->writeHTML($chartImage, true, false, true, false, '');
